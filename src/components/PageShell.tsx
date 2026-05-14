@@ -17,25 +17,27 @@ export default function PageShell({
     <div className="mx-auto max-w-3xl px-4 sm:px-6 py-12">
       <Link
         href={back}
-        className="text-sm text-[var(--term-muted)] hover:text-[var(--term-accent)]"
+        className="text-sm font-mono text-[var(--term-faint)] hover:text-[var(--term-accent)]"
       >
         ← cd ..
       </Link>
-      <div className="mt-6">
-        <p className="text-sm font-mono text-[var(--term-muted)]">
+      <div className="mt-8">
+        <p className="text-sm font-mono text-[var(--term-faint)]">
           <span className="text-[var(--term-prompt)]">$</span> {command}
         </p>
-        <h1 className="text-3xl md:text-4xl font-semibold mt-1 text-[var(--term-fg)]">
-          <span className="text-[var(--term-muted)]"># </span>
+        <h1 className="text-4xl md:text-5xl font-bold mt-2 text-[var(--term-fg)] tracking-tight">
+          <span className="text-[var(--term-faint)] font-mono font-normal">
+            #{" "}
+          </span>
           {title}
         </h1>
         {description && (
-          <p className="text-[var(--term-muted)] mt-2 max-w-2xl">
+          <p className="text-[var(--term-muted)] mt-3 max-w-2xl text-base md:text-lg leading-relaxed">
             {description}
           </p>
         )}
       </div>
-      <div className="mt-8">{children}</div>
+      <div className="mt-10">{children}</div>
     </div>
   );
 }

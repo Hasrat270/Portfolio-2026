@@ -9,17 +9,18 @@ export default function Hero() {
       className="mx-auto max-w-5xl px-4 sm:px-6 pt-10 md:pt-16 pb-12"
     >
       <div className="mb-6 md:mb-8">
-        <p className="text-[var(--term-muted)] text-sm font-mono">
+        <p className="text-[var(--term-faint)] text-sm font-mono">
           <span className="text-[var(--term-prompt)]">$</span> cat intro.md
         </p>
-        <h1 className="mt-2 text-3xl md:text-5xl font-semibold text-[var(--term-fg)] leading-tight tracking-tight">
+        <h1 className="mt-2 text-4xl md:text-6xl font-bold text-[var(--term-fg)] leading-[1.1] tracking-tight">
           hi, I&apos;m{" "}
           <span className="text-[var(--term-prompt)]">{SITE.name}</span>
           <span className="caret" />
         </h1>
-        <p className="mt-3 text-[var(--term-muted)] text-base md:text-lg max-w-2xl">
+        <p className="mt-4 text-[var(--term-muted)] text-lg md:text-xl max-w-2xl leading-relaxed">
           {SITE.role} building modern web applications end-to-end. TypeScript,
-          Next.js, Node.js, PostgreSQL. Available for freelance & full-time work.
+          Next.js, Node.js, PostgreSQL. Available for freelance & full-time
+          work.
         </p>
         <div className="mt-4 flex flex-wrap gap-3 text-sm">
           <Link

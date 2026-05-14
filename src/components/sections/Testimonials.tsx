@@ -19,14 +19,16 @@ export default function Testimonials() {
             key={i}
             className="rounded-lg border border-[var(--term-border)] bg-[var(--term-surface)] p-5"
           >
-            <blockquote className="text-[var(--term-fg)]/95 leading-relaxed text-sm relative">
-              <span className="text-[var(--term-prompt)] text-xl absolute -left-1 -top-1 select-none">
+            <blockquote className="text-[var(--term-fg)] leading-relaxed text-base relative">
+              <span className="text-[var(--term-prompt)] text-2xl absolute -left-1 -top-2 select-none">
                 &ldquo;
               </span>
-              <span className="pl-3 block">{t.quote}</span>
+              <span className="pl-4 block">{t.quote}</span>
             </blockquote>
-            <figcaption className="mt-4 text-sm text-[var(--term-muted)]">
-              <span className="text-[var(--term-accent)]">{t.author}</span>
+            <figcaption className="mt-5 text-sm text-[var(--term-muted)]">
+              <span className="text-[var(--term-accent)] font-semibold">
+                {t.author}
+              </span>
               <span> · {t.role}</span>
               {t.company && <span> · {t.company}</span>}
             </figcaption>

@@ -28,7 +28,7 @@ export default function SkillsAndTools() {
               {group.items.map((item) => (
                 <li
                   key={item}
-                  className="text-sm text-[var(--term-fg)] border border-[var(--term-border)] hover:border-[var(--term-muted)] px-2.5 py-1 rounded transition-colors"
+                  className="text-sm font-mono text-[var(--term-fg)] bg-[var(--term-bg)]/60 border border-[var(--term-border-strong)] hover:border-[var(--term-prompt)] hover:text-[var(--term-prompt)] px-3 py-1 rounded transition-colors"
                 >
                   {item}
                 </li>

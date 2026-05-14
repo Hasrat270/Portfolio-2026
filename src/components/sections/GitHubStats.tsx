@@ -54,20 +54,20 @@ export default async function GitHubStats() {
               className="block rounded border border-[var(--term-border)] hover:border-[var(--term-prompt)] bg-[var(--term-surface)] p-4 transition-colors"
             >
               <div className="flex items-baseline justify-between gap-3">
-                <h4 className="text-[var(--term-accent)] font-semibold text-sm truncate">
+                <h4 className="text-[var(--term-accent)] font-bold text-base truncate">
                   {r.name}
                 </h4>
-                <span className="text-xs text-[var(--term-muted)] whitespace-nowrap">
+                <span className="text-sm font-mono text-[var(--term-muted)] whitespace-nowrap">
                   ★ {r.stargazers_count}
                 </span>
               </div>
               {r.description && (
-                <p className="text-xs text-[var(--term-muted)] mt-1 line-clamp-2">
+                <p className="text-sm text-[var(--term-muted)] mt-1.5 leading-relaxed line-clamp-2">
                   {r.description}
                 </p>
               )}
               {r.language && (
-                <span className="inline-block text-[10px] uppercase tracking-wider text-[var(--term-prompt)] mt-2">
+                <span className="inline-block text-xs font-mono uppercase tracking-wider text-[var(--term-prompt)] mt-3">
                   {r.language}
                 </span>
               )}

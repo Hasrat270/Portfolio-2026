@@ -22,27 +22,27 @@ export default function Projects() {
             className="group block rounded-lg border border-[var(--term-border)] hover:border-[var(--term-prompt)] bg-[var(--term-surface)] p-5 transition-colors"
           >
             <div className="flex items-start justify-between gap-3">
-              <h3 className="text-lg font-semibold text-[var(--term-fg)] group-hover:text-[var(--term-accent)] transition-colors">
+              <h3 className="text-xl font-bold text-[var(--term-fg)] group-hover:text-[var(--term-accent)] transition-colors tracking-tight">
                 {p.frontmatter.title}
               </h3>
-              <span className="text-[var(--term-muted)] text-xs whitespace-nowrap mt-1">
+              <span className="text-[var(--term-faint)] text-xs font-mono whitespace-nowrap mt-1.5">
                 {p.frontmatter.date.slice(0, 7)}
               </span>
             </div>
-            <p className="text-sm text-[var(--term-muted)] mt-2 leading-relaxed">
+            <p className="text-base text-[var(--term-muted)] mt-3 leading-relaxed">
               {p.frontmatter.summary}
             </p>
-            <div className="mt-3 flex flex-wrap gap-1.5">
+            <div className="mt-4 flex flex-wrap gap-1.5">
               {p.frontmatter.tech.map((t) => (
                 <span
                   key={t}
-                  className="text-[10px] uppercase tracking-wider text-[var(--term-accent)] border border-[var(--term-border)] px-1.5 py-0.5 rounded"
+                  className="text-xs font-mono uppercase tracking-wider text-[var(--term-accent)] border border-[var(--term-border-strong)] bg-[var(--term-bg)]/40 px-2 py-0.5 rounded"
                 >
                   {t}
                 </span>
               ))}
             </div>
-            <div className="mt-4 text-sm text-[var(--term-prompt)] group-hover:translate-x-0.5 transition-transform">
+            <div className="mt-4 text-sm font-semibold text-[var(--term-prompt)] group-hover:translate-x-0.5 transition-transform">
               read case study →
             </div>
           </Link>

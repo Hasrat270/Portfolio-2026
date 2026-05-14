@@ -17,20 +17,22 @@ export default function ExperienceTimeline() {
           <li key={`${e.company}-${idx}`} className="pl-6 relative">
             <span className="absolute -left-[6px] top-2 w-3 h-3 rounded-full bg-[var(--term-prompt)] ring-2 ring-[var(--term-bg)]" />
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <h3 className="text-lg font-semibold text-[var(--term-fg)]">
+              <h3 className="text-xl font-bold text-[var(--term-fg)] tracking-tight">
                 {e.role}
               </h3>
-              <span className="text-[var(--term-accent)]">@ {e.company}</span>
-              <span className="text-[var(--term-muted)] text-sm ml-auto">
+              <span className="text-[var(--term-accent)] font-semibold">
+                @ {e.company}
+              </span>
+              <span className="text-[var(--term-faint)] text-sm font-mono ml-auto">
                 {e.period}
                 {e.location ? ` · ${e.location}` : ""}
               </span>
             </div>
-            <ul className="mt-3 space-y-1.5">
+            <ul className="mt-3 space-y-2">
               {e.bullets.map((b, i) => (
                 <li
                   key={i}
-                  className="text-sm text-[var(--term-fg)]/90 leading-relaxed pl-4 relative before:content-['▸'] before:absolute before:left-0 before:text-[var(--term-prompt)]"
+                  className="text-base text-[var(--term-fg)] leading-relaxed pl-5 relative before:content-['▸'] before:absolute before:left-0 before:text-[var(--term-prompt)]"
                 >
                   {b}
                 </li>

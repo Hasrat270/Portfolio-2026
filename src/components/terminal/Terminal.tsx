@@ -225,28 +225,28 @@ export default function Terminal() {
         {!booting && (
           <div className="flex items-center text-[var(--term-fg)]">
             <Prompt cwd={cwd} />
-            <input
-              ref={inputRef}
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={onKeyDown}
-              onFocus={() => setFocused(true)}
-              onBlur={() => setFocused(false)}
-              spellCheck={false}
-              autoCapitalize="none"
-              autoCorrect="off"
-              aria-label="terminal input"
-              className="flex-1 bg-transparent outline-none border-none text-[var(--term-fg)] font-mono caret-transparent"
-            />
-            {focused && (
-              <span
-                className="caret"
-                style={{
-                  marginLeft: `-${input.length}ch`,
-                  transform: `translateX(${input.length}ch)`,
-                }}
+            <div className="relative flex-1">
+              <input
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={onKeyDown}
+                onFocus={() => setFocused(true)}
+                onBlur={() => setFocused(false)}
+                spellCheck={false}
+                autoCapitalize="none"
+                autoCorrect="off"
+                aria-label="terminal input"
+                style={{ caretColor: "var(--term-prompt)", outline: "none" }}
+                className="w-full bg-transparent border-none focus:outline-none focus-visible:outline-none text-[var(--term-fg)] font-mono"
               />
-            )}
+              {!focused && input.length === 0 && (
+                <span
+                  className="caret pointer-events-none absolute left-0 top-1/2 -translate-y-1/2"
+                  aria-hidden="true"
+                />
+              )}
+            </div>
           </div>
         )}
       </div>
