@@ -1,23 +1,24 @@
 export default function SectionHeading({
-  command,
+  eyebrow,
   title,
   description,
 }: {
-  command: string;
+  eyebrow?: string;
   title: string;
   description?: string;
 }) {
   return (
-    <header className="mb-8">
-      <div className="text-sm text-[var(--term-faint)] font-mono">
-        <span className="text-[var(--term-prompt)]">$</span> {command}
-      </div>
-      <h2 className="text-3xl md:text-4xl font-bold mt-2 text-[var(--term-fg)] tracking-tight">
-        <span className="text-[var(--term-faint)] font-mono font-normal">## </span>
+    <header className="mb-10">
+      {eyebrow && (
+        <p className="text-sm font-semibold text-[var(--accent)] uppercase tracking-widest">
+          {eyebrow}
+        </p>
+      )}
+      <h2 className="font-display mt-2 text-3xl md:text-4xl font-bold text-[var(--fg-soft)] tracking-tight leading-tight">
         {title}
       </h2>
       {description && (
-        <p className="text-[var(--term-muted)] mt-3 max-w-2xl text-base md:text-lg leading-relaxed">
+        <p className="mt-3 text-[var(--muted)] text-base md:text-lg leading-relaxed max-w-2xl">
           {description}
         </p>
       )}

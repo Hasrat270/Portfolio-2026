@@ -8,16 +8,16 @@ export type Testimonial = {
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "Hasrat shipped fast and communicated clearly the whole way. The dashboard he built replaced three internal tools.",
-    author: "— Placeholder Client",
+      "Hasrat shipped fast and kept us in the loop the whole way. The dashboard he built replaced three of our internal tools in one go.",
+    author: "Placeholder Client",
     role: "Founder",
-    company: "Stealth Startup",
+    company: "Stealth startup",
   },
   {
     quote:
-      "Strong product instincts, not just code. He pushed back on the spec when it needed pushing and the result was better for it.",
-    author: "— Placeholder Lead",
-    role: "Engineering Lead",
+      "Strong product instincts, not just code. He pushed back on the brief where it needed pushing — and the result was better for it.",
+    author: "Placeholder Lead",
+    role: "Engineering lead",
     company: "Acme Co.",
   },
 ];

@@ -1,8 +1,8 @@
 ---
-title: "School Management System"
-summary: "Attendance, grades, and parent communication for a mid-size school."
-problem: "School was running on spreadsheets and WhatsApp groups — losing data, missing updates, and burning teacher hours on admin."
-role: "Lead developer."
+title: "A school management system"
+summary: "Attendance, grades, and parent updates — everything a mid-sized school does daily, in one place that actually works on a phone."
+problem: "A 600-student school was running on spreadsheets and WhatsApp groups. Data was getting lost. Teachers were burning out on admin."
+role: "Lead developer — design, build, and roll-out."
 date: "2024-04-20"
 tech: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS"]
 featured: true
@@ -10,23 +10,23 @@ links:
   repo: "https://github.com/Hasrat270"
 ---
 
-## Context
+## The situation
 
-A 600-student school needed to digitize daily operations: attendance tracking, grade entry, parent notifications, and report-card generation. The bar was set deliberately low — teachers had to be productive on day one, not day thirty.
+A school with 600 students was drowning in admin. Attendance was being taken on paper, copied into spreadsheets, then lost. Grades lived in one teacher's laptop. Parent updates went out via half a dozen WhatsApp groups. The headmistress wanted one tool that handled all of it — and the deal was that teachers had to be productive on it from day one. Day thirty was too late.
 
-## Decisions
+## What I decided
 
-- **Mobile-first UI** because teachers take attendance on phones, not laptops. Desktop is the secondary form factor.
-- **Optimistic UI for attendance marking** — a teacher taps a name, the dot turns green immediately, sync happens in the background. Spotty wifi in classrooms made this non-negotiable.
-- **Server-rendered PDF report cards** using a headless browser pipeline, not client-side jsPDF. Output had to match the school's existing letterhead exactly.
-- **Role-based dashboards** — teachers, admins, and parents each see a UI tailored to their actual workflow, not a single mega-app.
+- **Mobile-first, no exceptions.** Teachers take attendance on their phones, walking between classrooms. Desktop is the secondary form factor.
+- **Mark and forget.** When a teacher taps a student's name, the green dot appears immediately, even if the wifi is flaky. The data syncs in the background. This single decision saved more frustration than anything else.
+- **Different home screens for different people.** Teachers, the admin office, and parents each see a screen built for their day. No menus to dig through.
+- **Server-generated PDFs for report cards.** The output had to match the school's letterhead exactly. We built a small pipeline that produces the same file, every time.
 
-## Tradeoffs
+## What I traded off
 
-Skipped a full grading-rubric editor for v1 — teachers enter raw scores and the system computes letter grades against a configurable cutoff table. A proper rubric builder is a v2 ask if the school wants it.
+No fancy grading-rubric builder in v1. Teachers enter raw scores, and the system converts them into letter grades against a simple cutoff table the school can edit. If they want a proper rubric editor, we'll build it in v2.
 
-No mobile app, just a responsive web app. Push notifications go via SMS/email instead. Cheaper, no app-store overhead, but means no offline mode.
+No mobile app — just a responsive website. Notifications go via SMS and email. It's cheaper, it works on every phone, and there's no app store approval to wait for.
 
-## Outcome
+## How it turned out
 
-Live with all teachers using daily. Admin time on attendance and reports dropped from ~6 hours/week to under 1. Parent engagement (measured by message read rates) tripled over WhatsApp baseline.
+Every teacher is using it daily. Time spent on attendance and reports dropped from about six hours a week to under one. Parent engagement — measured by message read rates — tripled compared to the WhatsApp baseline. Most importantly, the headmistress can finally see real numbers across the school instead of asking each teacher individually.

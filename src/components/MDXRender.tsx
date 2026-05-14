@@ -5,7 +5,7 @@ import { mdxComponents } from "./mdx/MDXComponents";
 
 export default function MDXRender({ source }: { source: string }) {
   return (
-    <div className="prose-term">
+    <div className="prose">
       <MDXRemote
         source={source}
         components={mdxComponents}

@@ -1,8 +1,8 @@
 ---
-title: "Electronics E-Commerce Platform"
-summary: "Full-stack e-commerce store with custom admin dashboard, built end-to-end."
-problem: "Small electronics retailer needed an online storefront with inventory, orders, and admin tooling — without the per-transaction tax of hosted platforms."
-role: "Sole developer — architecture, backend, frontend, deploy."
+title: "An online electronics store"
+summary: "A complete online store with a custom admin dashboard, built from scratch for a small electronics retailer."
+problem: "A small electronics retailer was losing about 15 percent of every sale to marketplace fees. They needed their own store — without the per-sale tax."
+role: "I designed and built the whole thing, end to end."
 date: "2024-09-15"
 tech: ["Next.js", "Node.js", "PostgreSQL", "Tailwind CSS", "Stripe"]
 featured: true
@@ -10,23 +10,27 @@ links:
   repo: "https://github.com/Hasrat270"
 ---
 
-## Context
+## The situation
 
-The client was selling electronics through marketplaces and taking a ~15% platform fee on every transaction. They wanted to migrate to a self-hosted store with full control over checkout, inventory, and customer data. The hard constraint: it had to ship in under 8 weeks.
+The client had been selling electronics through online marketplaces for years. Sales were steady, but every transaction was costing them roughly fifteen percent in platform fees. They wanted to move to their own store and own the customer relationship — including the email list they'd never been able to build.
 
-## Decisions
+The catch: it had to launch in under two months, in time for the holiday season.
 
-- **Next.js App Router** for SSR on product pages — SEO matters for an electronics store competing on long-tail product searches.
-- **PostgreSQL over MongoDB** — relational data (products, orders, customers, line items) maps cleanly to SQL and queries stay fast as inventory grows.
-- **Custom admin dashboard** instead of off-the-shelf (Strapi/Sanity) — the client's workflow had quirks (B2B pricing tiers) that didn't fit standard CMS shapes.
-- **Stripe for payments**, not a custom gateway integration — boring choice, but it earned its place.
+## What I decided
 
-## Tradeoffs
+A few choices shaped the project:
 
-Skipped a proper search index (Algolia/Meilisearch) for v1 and used Postgres full-text search. It's slower at scale but kept the infra footprint to one database. A migration path exists when product count crosses ~10k.
+- **Build it on Next.js.** Product pages had to rank well on Google — electronics shoppers search for very specific things — so server-rendering made sense.
+- **Use a real database (PostgreSQL).** Products, customers, orders, inventory — these all relate to each other in messy ways. A traditional database handles that cleanly.
+- **A custom admin panel, not an off-the-shelf one.** The client had a quirky workflow for B2B pricing tiers that no standard tool supported well. Better to build something that fits their day-to-day than force them to adapt.
+- **Stripe for payments.** Not glamorous, but it's the right tool. Customers already trust it.
 
-Cart state lives in `localStorage` + server reconciliation rather than a full server-side cart with sessions. Simpler, but means cross-device cart sync is a future feature.
+## What I traded off
 
-## Outcome
+I skipped a dedicated search engine for the first version and used the database's built-in search instead. It's slower under heavy load, but it kept the system simpler and cheaper to run. There's a clear path to upgrade if they grow past it.
 
-Shipped in 7 weeks. The client cut transaction fees by ~12% on day one and gained direct customer email access for marketing. Order volume in month two was within 8% of their marketplace baseline despite the migration friction.
+The shopping cart lives in the browser, with a quick sync to the server at checkout. Simpler to build, but it means a customer who switches devices loses their cart. We agreed that was an acceptable trade for v1.
+
+## How it turned out
+
+The store went live a week ahead of schedule. The client cut their per-sale fees by roughly twelve percent on day one. Within two months they had their first proper email list and were running their first direct campaign. Sales recovered to within eight percent of their marketplace baseline despite the move — a number we were both happy with.

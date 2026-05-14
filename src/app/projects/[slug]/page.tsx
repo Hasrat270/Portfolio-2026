@@ -35,55 +35,54 @@ export default async function ProjectPage({
   const { frontmatter, content } = project;
   return (
     <PageShell
-      command={`cat ~/projects/${slug}.md`}
+      eyebrow="Project"
       title={frontmatter.title}
       description={frontmatter.summary}
       back="/projects"
+      backLabel="All projects"
     >
-      <div className="mb-6 grid gap-2 text-sm">
-        <Meta label="problem" value={frontmatter.problem} />
-        <Meta label="role" value={frontmatter.role} />
-        <Meta label="date" value={frontmatter.date.slice(0, 10)} />
-        <div className="flex items-baseline gap-3">
-          <span className="text-[var(--term-muted)] w-20 shrink-0">tech</span>
-          <span className="flex flex-wrap gap-1.5">
+      <dl className="grid gap-4 sm:grid-cols-2 mb-8 rounded-xl border border-[var(--border)] bg-[var(--bg-muted)]/50 p-6">
+        <Meta label="The problem" value={frontmatter.problem} />
+        <Meta label="My role" value={frontmatter.role} />
+        <Meta label="When" value={formatDate(frontmatter.date)} />
+        <div>
+          <dt className="text-xs font-semibold uppercase tracking-widest text-[var(--faint)]">
+            Built with
+          </dt>
+          <dd className="mt-1.5 flex flex-wrap gap-1.5">
             {frontmatter.tech.map((t) => (
               <span
                 key={t}
-                className="text-[10px] uppercase tracking-wider text-[var(--term-accent)] border border-[var(--term-border)] px-1.5 py-0.5 rounded"
+                className="text-xs text-[var(--fg-soft)] bg-[var(--bg)] border border-[var(--border)] px-2 py-0.5 rounded"
               >
                 {t}
               </span>
             ))}
-          </span>
+          </dd>
         </div>
         {frontmatter.links && (
-          <div className="flex items-baseline gap-3 mt-1">
-            <span className="text-[var(--term-muted)] w-20 shrink-0">links</span>
-            <span className="flex flex-wrap gap-3">
-              {frontmatter.links.repo && (
-                <Link
-                  href={frontmatter.links.repo}
-                  target="_blank"
-                  className="text-[var(--term-accent)] hover:text-[var(--term-prompt)]"
-                >
-                  → repo
-                </Link>
-              )}
-              {frontmatter.links.demo && (
-                <Link
-                  href={frontmatter.links.demo}
-                  target="_blank"
-                  className="text-[var(--term-accent)] hover:text-[var(--term-prompt)]"
-                >
-                  → live demo
-                </Link>
-              )}
-            </span>
+          <div className="sm:col-span-2 flex flex-wrap gap-5 pt-2 border-t border-[var(--border)]">
+            {frontmatter.links.repo && (
+              <Link
+                href={frontmatter.links.repo}
+                target="_blank"
+                className="font-semibold text-[var(--link)] hover:text-[var(--link-hover)] underline underline-offset-4 decoration-1 hover:decoration-2"
+              >
+                View code →
+              </Link>
+            )}
+            {frontmatter.links.demo && (
+              <Link
+                href={frontmatter.links.demo}
+                target="_blank"
+                className="font-semibold text-[var(--link)] hover:text-[var(--link-hover)] underline underline-offset-4 decoration-1 hover:decoration-2"
+              >
+                See it live →
+              </Link>
+            )}
           </div>
         )}
-      </div>
-      <hr className="border-dashed border-[var(--term-border)] my-6" />
+      </dl>
       <MDXRender source={content} />
     </PageShell>
   );
@@ -91,9 +90,22 @@ export default async function ProjectPage({
 
 function Meta({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-baseline gap-3">
-      <span className="text-[var(--term-muted)] w-20 shrink-0">{label}</span>
-      <span className="text-[var(--term-fg)]">{value}</span>
+    <div>
+      <dt className="text-xs font-semibold uppercase tracking-widest text-[var(--faint)]">
+        {label}
+      </dt>
+      <dd className="mt-1.5 text-base text-[var(--fg-soft)]">{value}</dd>
     </div>
   );
+}
+
+function formatDate(iso: string) {
+  try {
+    return new Date(iso).toLocaleDateString("en-US", {
+      month: "long",
+      year: "numeric",
+    });
+  } catch {
+    return iso.slice(0, 10);
+  }
 }

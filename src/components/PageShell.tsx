@@ -1,38 +1,39 @@
 import Link from "next/link";
 
 export default function PageShell({
-  command,
+  eyebrow,
   title,
   description,
   back = "/",
+  backLabel = "Back home",
   children,
 }: {
-  command: string;
+  eyebrow?: string;
   title: string;
   description?: string;
   back?: string;
+  backLabel?: string;
   children: React.ReactNode;
 }) {
   return (
-    <div className="mx-auto max-w-3xl px-4 sm:px-6 py-12">
+    <div className="mx-auto max-w-3xl px-5 sm:px-8 py-12 md:py-16">
       <Link
         href={back}
-        className="text-sm font-mono text-[var(--term-faint)] hover:text-[var(--term-accent)]"
+        className="text-sm font-semibold text-[var(--muted)] hover:text-[var(--accent)] inline-flex items-center gap-1.5"
       >
-        ← cd ..
+        <span aria-hidden="true">←</span> {backLabel}
       </Link>
       <div className="mt-8">
-        <p className="text-sm font-mono text-[var(--term-faint)]">
-          <span className="text-[var(--term-prompt)]">$</span> {command}
-        </p>
-        <h1 className="text-4xl md:text-5xl font-bold mt-2 text-[var(--term-fg)] tracking-tight">
-          <span className="text-[var(--term-faint)] font-mono font-normal">
-            #{" "}
-          </span>
+        {eyebrow && (
+          <p className="text-sm font-semibold text-[var(--accent)] uppercase tracking-widest">
+            {eyebrow}
+          </p>
+        )}
+        <h1 className="font-display mt-2 text-4xl md:text-5xl font-bold text-[var(--fg-soft)] tracking-tight leading-[1.1]">
           {title}
         </h1>
         {description && (
-          <p className="text-[var(--term-muted)] mt-3 max-w-2xl text-base md:text-lg leading-relaxed">
+          <p className="mt-4 text-[var(--muted)] text-base md:text-lg leading-relaxed max-w-2xl">
             {description}
           </p>
         )}

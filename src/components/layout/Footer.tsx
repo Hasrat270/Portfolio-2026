@@ -2,49 +2,46 @@ import { SITE } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--term-border)] mt-16">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 py-10 text-sm">
-        <div className="text-[var(--term-faint)] font-mono mb-5 select-none">
-          ─── eof ───
-        </div>
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div className="text-[var(--term-muted)]">
+    <footer className="border-t border-[var(--border)] mt-24 bg-[var(--bg-muted)]">
+      <div className="mx-auto max-w-4xl px-5 sm:px-8 py-10">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+          <div className="text-[15px] text-[var(--muted)]">
             © {new Date().getFullYear()}{" "}
-            <span className="text-[var(--term-fg)] font-semibold">
+            <span className="text-[var(--fg-soft)] font-semibold">
               {SITE.name}
             </span>
-            . built with curiosity & caffeine.
+            . Made with care.
           </div>
-          <div className="flex flex-wrap items-center gap-5 font-mono">
+          <div className="flex flex-wrap items-center gap-6 text-[15px]">
             <a
               href={`mailto:${SITE.email}`}
-              className="text-[var(--term-fg)] hover:text-[var(--term-accent)]"
+              className="text-[var(--link)] hover:text-[var(--link-hover)] underline underline-offset-4 decoration-1 hover:decoration-2"
             >
-              email
+              Email
             </a>
             <a
               href={SITE.socials.github}
-              className="text-[var(--term-fg)] hover:text-[var(--term-accent)]"
+              className="text-[var(--link)] hover:text-[var(--link-hover)] underline underline-offset-4 decoration-1 hover:decoration-2"
               target="_blank"
               rel="noopener noreferrer"
             >
-              github
+              GitHub
             </a>
             <a
               href={SITE.socials.linkedin}
-              className="text-[var(--term-fg)] hover:text-[var(--term-accent)]"
+              className="text-[var(--link)] hover:text-[var(--link-hover)] underline underline-offset-4 decoration-1 hover:decoration-2"
               target="_blank"
               rel="noopener noreferrer"
             >
-              linkedin
+              LinkedIn
             </a>
             <a
               href={SITE.socials.x}
-              className="text-[var(--term-fg)] hover:text-[var(--term-accent)]"
+              className="text-[var(--link)] hover:text-[var(--link-hover)] underline underline-offset-4 decoration-1 hover:decoration-2"
               target="_blank"
               rel="noopener noreferrer"
             >
-              x
+              Twitter
             </a>
           </div>
         </div>

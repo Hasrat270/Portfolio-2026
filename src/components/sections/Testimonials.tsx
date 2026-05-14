@@ -6,27 +6,27 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="mx-auto max-w-5xl px-4 sm:px-6 py-12 border-t border-[var(--term-border)]"
+      className="mx-auto max-w-4xl px-5 sm:px-8 py-16 border-t border-[var(--border)]"
     >
       <SectionHeading
-        command="cat testimonials/*"
-        title="testimonials"
-        description="A few kind words from people I've worked with."
+        eyebrow="Kind words"
+        title="What people say"
+        description="A few people I’ve had the pleasure of working with."
       />
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-5 md:grid-cols-2">
         {testimonials.map((t, i) => (
           <figure
             key={i}
-            className="rounded-lg border border-[var(--term-border)] bg-[var(--term-surface)] p-5"
+            className="rounded-xl border border-[var(--border)] bg-[var(--bg-muted)]/50 p-6"
           >
-            <blockquote className="text-[var(--term-fg)] leading-relaxed text-base relative">
-              <span className="text-[var(--term-prompt)] text-2xl absolute -left-1 -top-2 select-none">
+            <blockquote className="font-display text-lg text-[var(--fg-soft)] leading-relaxed">
+              <span className="text-[var(--accent)] text-3xl absolute -ml-2 -mt-3 select-none">
                 &ldquo;
               </span>
-              <span className="pl-4 block">{t.quote}</span>
+              <span className="block pl-3">{t.quote}</span>
             </blockquote>
-            <figcaption className="mt-5 text-sm text-[var(--term-muted)]">
-              <span className="text-[var(--term-accent)] font-semibold">
+            <figcaption className="mt-5 text-sm text-[var(--muted)]">
+              <span className="text-[var(--fg-soft)] font-semibold">
                 {t.author}
               </span>
               <span> · {t.role}</span>

@@ -7,55 +7,66 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="mx-auto max-w-5xl px-4 sm:px-6 py-12 border-t border-[var(--term-border)]"
+      className="mx-auto max-w-4xl px-5 sm:px-8 py-16 border-t border-[var(--border)]"
     >
       <SectionHeading
-        command="ls -la ~/projects"
-        title="projects"
-        description="A few things I've shipped recently. Each links to a case study with context, decisions, tradeoffs, and outcomes."
+        eyebrow="Selected work"
+        title="Things I’ve built"
+        description="A few projects I’m proud of. Each one started with a real problem — click through to see how it came together."
       />
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2">
         {projects.map((p) => (
           <Link
             key={p.slug}
             href={`/projects/${p.slug}`}
-            className="group block rounded-lg border border-[var(--term-border)] hover:border-[var(--term-prompt)] bg-[var(--term-surface)] p-5 transition-colors"
+            className="group block rounded-xl border border-[var(--border)] hover:border-[var(--accent)] bg-[var(--bg-muted)]/40 hover:bg-[var(--bg-muted)] p-6 transition-colors shadow-sm hover:shadow-md"
           >
             <div className="flex items-start justify-between gap-3">
-              <h3 className="text-xl font-bold text-[var(--term-fg)] group-hover:text-[var(--term-accent)] transition-colors tracking-tight">
+              <h3 className="font-display text-xl font-bold text-[var(--fg-soft)] group-hover:text-[var(--accent)] transition-colors leading-snug">
                 {p.frontmatter.title}
               </h3>
-              <span className="text-[var(--term-faint)] text-xs font-mono whitespace-nowrap mt-1.5">
-                {p.frontmatter.date.slice(0, 7)}
+              <span className="text-xs text-[var(--faint)] whitespace-nowrap mt-1.5">
+                {formatMonth(p.frontmatter.date)}
               </span>
             </div>
-            <p className="text-base text-[var(--term-muted)] mt-3 leading-relaxed">
+            <p className="text-base text-[var(--muted)] mt-3 leading-relaxed">
               {p.frontmatter.summary}
             </p>
-            <div className="mt-4 flex flex-wrap gap-1.5">
-              {p.frontmatter.tech.map((t) => (
+            <div className="mt-5 flex flex-wrap gap-1.5">
+              {p.frontmatter.tech.slice(0, 5).map((t) => (
                 <span
                   key={t}
-                  className="text-xs font-mono uppercase tracking-wider text-[var(--term-accent)] border border-[var(--term-border-strong)] bg-[var(--term-bg)]/40 px-2 py-0.5 rounded"
+                  className="text-xs text-[var(--fg-soft)] bg-[var(--bg-deep)]/60 px-2 py-0.5 rounded"
                 >
                   {t}
                 </span>
               ))}
             </div>
-            <div className="mt-4 text-sm font-semibold text-[var(--term-prompt)] group-hover:translate-x-0.5 transition-transform">
-              read case study →
+            <div className="mt-5 text-sm font-semibold text-[var(--accent)] group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-1">
+              Read the story <span aria-hidden="true">→</span>
             </div>
           </Link>
         ))}
       </div>
-      <div className="mt-6">
+      <div className="mt-8">
         <Link
           href="/projects"
-          className="text-sm text-[var(--term-accent)] hover:text-[var(--term-prompt)]"
+          className="text-[15px] font-semibold text-[var(--link)] hover:text-[var(--link-hover)] underline underline-offset-4 decoration-1 hover:decoration-2"
         >
-          → see all projects
+          See all projects →
         </Link>
       </div>
     </section>
   );
+}
+
+function formatMonth(date: string) {
+  try {
+    return new Date(date).toLocaleDateString("en-US", {
+      month: "short",
+      year: "numeric",
+    });
+  } catch {
+    return date.slice(0, 7);
+  }
 }

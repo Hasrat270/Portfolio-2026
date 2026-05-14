@@ -3,37 +3,36 @@ import { SITE } from "@/lib/site";
 
 export default function Header() {
   return (
-    <header className="border-b border-[var(--term-border)] bg-[var(--term-bg)]/80 backdrop-blur sticky top-0 z-30">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 h-14 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group font-mono">
-          <span className="text-[var(--term-prompt)]">~</span>
-          <span className="text-[var(--term-faint)]">/</span>
-          <span className="text-[var(--term-fg)] font-semibold group-hover:text-[var(--term-accent)] transition-colors">
-            {SITE.handle}
-          </span>
+    <header className="border-b border-[var(--border)] bg-[var(--bg)]/85 backdrop-blur sticky top-0 z-30">
+      <div className="mx-auto max-w-4xl px-5 sm:px-8 h-16 flex items-center justify-between">
+        <Link
+          href="/"
+          className="font-display text-xl font-bold text-[var(--fg-soft)] hover:text-[var(--accent)] transition-colors"
+        >
+          {SITE.name}
         </Link>
-        <nav className="hidden md:flex items-center gap-6 text-sm font-mono">
+        <nav className="hidden md:flex items-center gap-7 text-[15px]">
           {SITE.nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-[var(--term-fg)] hover:text-[var(--term-accent)] transition-colors"
+              className="text-[var(--muted)] hover:text-[var(--fg)] transition-colors capitalize"
             >
               {item.label}
             </Link>
           ))}
           <a
             href={SITE.resumeUrl}
-            className="text-[var(--term-prompt)] hover:text-[var(--term-bg)] hover:bg-[var(--term-prompt)] border border-[var(--term-prompt)] px-3 py-1 rounded transition-colors font-semibold"
+            className="text-[var(--bg)] bg-[var(--accent)] hover:bg-[var(--accent-strong)] px-4 py-1.5 rounded-md font-semibold transition-colors"
           >
-            resume.pdf
+            Résumé
           </a>
         </nav>
         <a
           href={SITE.resumeUrl}
-          className="md:hidden text-[var(--term-prompt)] text-sm font-mono font-semibold border border-[var(--term-prompt)] px-3 py-1 rounded"
+          className="md:hidden text-[var(--bg)] bg-[var(--accent)] text-sm font-semibold px-3 py-1.5 rounded-md"
         >
-          resume
+          Résumé
         </a>
       </div>
     </header>

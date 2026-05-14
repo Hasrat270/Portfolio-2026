@@ -2,33 +2,29 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="mx-auto max-w-3xl px-4 sm:px-6 py-24 font-mono">
-      <p className="text-[var(--term-danger)] text-sm">
-        <span className="text-[var(--term-prompt)]">$</span> cd{" "}
-        {typeof window === "undefined" ? "<requested-path>" : window.location.pathname}
-      </p>
-      <h1 className="text-5xl font-bold mt-3 text-[var(--term-fg)]">
+    <div className="mx-auto max-w-2xl px-5 sm:px-8 py-24 text-center">
+      <p className="text-sm font-semibold text-[var(--accent)] uppercase tracking-widest">
         404
-        <span className="text-[var(--term-muted)] text-2xl ml-3">
-          no such file or directory
-        </span>
-      </h1>
-      <p className="text-[var(--term-muted)] mt-4 max-w-xl">
-        The path you tried doesn&apos;t exist. Maybe it was renamed, or maybe a
-        link rotted. Either way — head back home.
       </p>
-      <div className="mt-6 flex flex-wrap gap-3 text-sm">
+      <h1 className="font-display mt-3 text-4xl md:text-5xl font-bold text-[var(--fg-soft)] tracking-tight">
+        This page isn’t here.
+      </h1>
+      <p className="text-[var(--muted)] mt-4 text-lg leading-relaxed">
+        The link might be old, or I might have moved things around. Either way —
+        sorry about that.
+      </p>
+      <div className="mt-8 flex flex-wrap justify-center gap-4">
         <Link
           href="/"
-          className="text-[var(--term-prompt)] border border-[var(--term-prompt)]/60 px-3 py-1.5 rounded"
+          className="bg-[var(--accent)] hover:bg-[var(--accent-strong)] text-[var(--bg)] font-semibold px-5 py-2.5 rounded-md transition-colors"
         >
-          → cd ~
+          Go home
         </Link>
         <Link
           href="/projects"
-          className="text-[var(--term-accent)] border border-[var(--term-border)] px-3 py-1.5 rounded"
+          className="border border-[var(--border-strong)] hover:border-[var(--accent)] hover:text-[var(--accent)] text-[var(--fg-soft)] font-semibold px-5 py-2.5 rounded-md transition-colors"
         >
-          → ls projects
+          See projects
         </Link>
       </div>
     </div>

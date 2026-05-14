@@ -6,29 +6,41 @@ export default function NowPreview() {
   return (
     <section
       id="now"
-      className="mx-auto max-w-5xl px-4 sm:px-6 py-12 border-t border-[var(--term-border)]"
+      className="mx-auto max-w-4xl px-5 sm:px-8 py-16 border-t border-[var(--border)]"
     >
-      <div className="rounded-lg border border-[var(--term-border-strong)] bg-[var(--term-surface)] p-6">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="w-2 h-2 rounded-full bg-[var(--term-prompt)] animate-pulse" />
-          <span className="text-xs font-mono font-bold uppercase tracking-wider text-[var(--term-prompt)]">
-            now
+      <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-muted)] p-8">
+        <div className="flex items-center gap-2 mb-4">
+          <span className="w-2 h-2 rounded-full bg-[var(--success)] animate-pulse" />
+          <span className="text-sm font-semibold uppercase tracking-widest text-[var(--success)]">
+            Right now
           </span>
-          <span className="text-xs font-mono text-[var(--term-faint)]">
-            · last updated {frontmatter.updated}
+          <span className="text-sm text-[var(--faint)]">
+            · updated {formatDate(frontmatter.updated)}
           </span>
         </div>
-        <p className="text-[var(--term-fg)] text-base md:text-lg leading-relaxed">
-          Rebuilding this portfolio with an interactive terminal hero. Reading
-          DDIA. Working on a SaaS side-project.
+        <p className="font-display text-xl md:text-2xl text-[var(--fg-soft)] leading-snug">
+          Rebuilding this site, reading a book on data systems, and slowly
+          shipping a side project that’s starting to feel real.
         </p>
         <Link
           href="/now"
-          className="inline-block mt-4 text-sm font-semibold text-[var(--term-link)] hover:text-[var(--term-prompt)]"
+          className="inline-block mt-5 font-semibold text-[var(--link)] hover:text-[var(--link-hover)] underline underline-offset-4 decoration-1 hover:decoration-2"
         >
-          → read more on /now
+          What I’m up to →
         </Link>
       </div>
     </section>
   );
+}
+
+function formatDate(iso: string) {
+  try {
+    return new Date(iso).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  } catch {
+    return iso;
+  }
 }

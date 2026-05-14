@@ -10,23 +10,23 @@ export type ExperienceItem = {
 export const experience: ExperienceItem[] = [
   {
     company: "Freelance",
-    role: "Full-Stack Developer",
+    role: "Full-stack developer",
     period: "2024 — Present",
     location: "Remote",
     bullets: [
-      "Building production web applications with Next.js, TypeScript, and PostgreSQL for clients across e-commerce and SaaS.",
-      "Designed and shipped admin dashboards, payment integrations, and auth flows from scratch.",
-      "Owned end-to-end delivery: discovery, architecture, implementation, and deployment.",
+      "Building production websites and web apps for founders and small teams.",
+      "Shipped admin dashboards, online stores, payment flows, and login systems from scratch.",
+      "Owning the whole project — from the first conversation to the live URL.",
     ],
   },
   {
-    company: "Personal Projects",
+    company: "Personal projects",
     role: "Builder",
     period: "2023 — 2024",
     bullets: [
-      "Shipped an e-commerce platform with Next.js + Node.js admin dashboard.",
-      "Built a SaaS platform exploring multi-tenant architecture and Stripe billing.",
-      "Authored a school management system covering attendance, grades, and parent comms.",
+      "Shipped an online electronics store with a custom admin panel.",
+      "Built a multi-tenant SaaS platform exploring teams, roles, and Stripe billing.",
+      "Wrote a school management tool covering attendance, grades, and parent comms.",
     ],
   },
 ];

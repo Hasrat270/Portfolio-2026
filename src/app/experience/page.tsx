@@ -4,35 +4,37 @@ import { experience } from "@/content/experience";
 
 export const metadata: Metadata = {
   title: "Experience",
-  description: "Work experience timeline.",
+  description: "Where I’ve worked, what I built, and what I learned.",
 };
 
 export default function ExperiencePage() {
   return (
     <PageShell
-      command="git log --author=hasrat"
-      title="experience"
-      description="The professional commit log."
+      eyebrow="Experience"
+      title="Where I’ve worked"
+      description="A short version of the journey so far."
     >
-      <ol className="relative border-l border-[var(--term-border)] ml-2 space-y-8">
+      <ol className="relative border-l-2 border-[var(--border-strong)] ml-2 space-y-10">
         {experience.map((e, idx) => (
           <li key={idx} className="pl-6 relative">
-            <span className="absolute -left-[6px] top-2 w-3 h-3 rounded-full bg-[var(--term-prompt)] ring-2 ring-[var(--term-bg)]" />
+            <span className="absolute -left-[7px] top-2.5 w-3 h-3 rounded-full bg-[var(--accent)] ring-4 ring-[var(--bg)]" />
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <h2 className="text-lg font-semibold text-[var(--term-fg)]">
+              <h2 className="font-display text-xl font-bold text-[var(--fg-soft)]">
                 {e.role}
               </h2>
-              <span className="text-[var(--term-accent)]">@ {e.company}</span>
-              <span className="text-[var(--term-muted)] text-sm ml-auto">
+              <span className="text-[var(--accent)] font-semibold">
+                · {e.company}
+              </span>
+              <span className="text-[var(--faint)] text-sm sm:ml-auto">
                 {e.period}
                 {e.location ? ` · ${e.location}` : ""}
               </span>
             </div>
-            <ul className="mt-3 space-y-1.5">
+            <ul className="mt-3 space-y-2">
               {e.bullets.map((b, i) => (
                 <li
                   key={i}
-                  className="text-sm text-[var(--term-fg)]/90 leading-relaxed pl-4 relative before:content-['▸'] before:absolute before:left-0 before:text-[var(--term-prompt)]"
+                  className="text-base text-[var(--fg)] leading-relaxed pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-[var(--accent)] before:font-bold"
                 >
                   {b}
                 </li>

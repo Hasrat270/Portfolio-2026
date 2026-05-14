@@ -1,8 +1,8 @@
 ---
-title: "Multi-Tenant SaaS Platform"
-summary: "A SaaS starter exploring workspace-scoped data, billing, and team auth."
-problem: "Needed a reusable foundation for SaaS products: clean multi-tenant boundaries, role-based access, Stripe billing — without reinventing each time."
-role: "Architect & sole developer."
+title: "A reusable SaaS foundation"
+summary: "An opinionated starter for building software-as-a-service products — auth, teams, billing, and all the boring stuff already done right."
+problem: "After shipping a few SaaS projects from scratch, I kept rebuilding the same plumbing — login, teams, subscriptions. Time to do it once, properly."
+role: "I designed and built it — every decision is mine to defend."
 date: "2024-12-02"
 tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Stripe", "NextAuth"]
 featured: true
@@ -10,23 +10,23 @@ links:
   repo: "https://github.com/Hasrat270"
 ---
 
-## Context
+## The situation
 
-After shipping three SaaS-shaped projects from scratch, the boilerplate was getting repetitive: auth, workspaces, invitations, billing, RBAC. I built this as the canonical version — opinionated, but every decision is justified in the code.
+Every SaaS project starts with the same checklist: sign-up, login, password resets, team invitations, billing, role-based permissions. After building this three times for three different products, I decided to build it once, properly, and reuse it.
 
-## Decisions
+## What I decided
 
-- **Row-level tenancy** via `workspace_id` on every row, enforced by Prisma middleware that injects the filter automatically. No shared-nothing isolation needed at this scale.
-- **NextAuth with magic links** as the default — passwords are a liability surface I didn't want to own.
-- **Stripe Customer Portal** for subscription management rather than building billing UI. Less code, fewer bugs, customers already trust the Stripe-hosted flow.
-- **Server components for data fetching**; client components only where interactivity demands it.
+- **Email magic links instead of passwords.** Passwords are a security headache. Magic links shift the responsibility back to the email provider, who's far better at securing accounts than I am.
+- **Stripe's own billing portal** instead of building my own. Less code to maintain, less to break, and customers already trust Stripe's UI.
+- **Workspaces as first-class citizens.** Every piece of data belongs to a workspace, automatically. No accidentally showing one customer another's information.
+- **Server-side rendering by default**, with interactive parts only where they earn their place.
 
-## Tradeoffs
+## What I traded off
 
-The Prisma middleware approach means tenant isolation is enforced in app code, not the database. A future migration to Postgres RLS would be safer but adds complexity I didn't need yet. Documented as a known gap.
+The workspace separation is enforced by application code, not by the database itself. That's faster to build and good enough for the scale I'm targeting. If a project grows, there's a documented path to a stronger isolation model.
 
-Magic-link-only auth is great for security but worse for users on Outlook/corporate email filters. Added a fallback to OAuth (Google, GitHub) for that reason.
+Magic links are great for security but worse for users on email systems that aggressively filter automated mail (looking at you, corporate Outlook). I added Google and GitHub sign-in as a fallback.
 
-## Outcome
+## How it turned out
 
-Now the foundation for two production SaaS products. Time-to-MVP for the next SaaS I started dropped from ~3 weeks of boilerplate to ~3 days.
+This foundation is now powering two production SaaS products. The time it takes me to get a new SaaS idea from "blank repo" to "working prototype" dropped from about three weeks to about three days. Worth every hour I spent building it.

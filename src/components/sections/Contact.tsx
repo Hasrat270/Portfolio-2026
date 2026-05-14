@@ -19,7 +19,7 @@ export default function Contact() {
       name: String(fd.get("name") || ""),
       email: String(fd.get("email") || ""),
       message: String(fd.get("message") || ""),
-      website: String(fd.get("website") || ""), // honeypot
+      website: String(fd.get("website") || ""),
     };
     try {
       const res = await fetch("/api/contact", {
@@ -32,38 +32,38 @@ export default function Contact() {
       };
       if (!res.ok) {
         setStatus("error");
-        setError(data.error || `request failed (${res.status})`);
+        setError(data.error || `Something went wrong (${res.status}).`);
         return;
       }
       setStatus("ok");
       (e.target as HTMLFormElement).reset();
     } catch (err) {
       setStatus("error");
-      setError(err instanceof Error ? err.message : "network error");
+      setError(err instanceof Error ? err.message : "Network error.");
     }
   }
 
   return (
     <section
       id="contact"
-      className="mx-auto max-w-5xl px-4 sm:px-6 py-12 border-t border-[var(--term-border)]"
+      className="mx-auto max-w-4xl px-5 sm:px-8 py-16 border-t border-[var(--border)]"
     >
       <SectionHeading
-        command="mail -s 'hello' hasrat"
-        title="contact"
-        description="Email is fastest. The form below lands in the same inbox."
+        eyebrow="Let’s talk"
+        title="Say hello"
+        description="Email is the fastest way to reach me. The form below lands in the same inbox."
       />
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-8 md:grid-cols-2">
         <div className="space-y-3">
-          <ContactLine label="email" value={SITE.email} href={`mailto:${SITE.email}`} />
-          <ContactLine label="github" value={SITE.github} href={SITE.socials.github} />
-          <ContactLine label="linkedin" value="hasrat270" href={SITE.socials.linkedin} />
-          <ContactLine label="x" value="@hasrat270" href={SITE.socials.x} />
-          <ContactLine label="resume" value="resume.pdf" href={SITE.resumeUrl} />
+          <ContactLine label="Email" value={SITE.email} href={`mailto:${SITE.email}`} />
+          <ContactLine label="GitHub" value={SITE.github} href={SITE.socials.github} />
+          <ContactLine label="LinkedIn" value="hasrat270" href={SITE.socials.linkedin} />
+          <ContactLine label="Twitter" value="@hasrat270" href={SITE.socials.x} />
+          <ContactLine label="Résumé" value="Download PDF" href={SITE.resumeUrl} />
         </div>
         <form
           onSubmit={onSubmit}
-          className="rounded-lg border border-[var(--term-border)] bg-[var(--term-surface)] p-5 space-y-3"
+          className="rounded-xl border border-[var(--border)] bg-[var(--bg-muted)]/40 p-6 space-y-4"
         >
           <input
             type="text"
@@ -73,43 +73,49 @@ export default function Contact() {
             className="hidden"
             aria-hidden="true"
           />
-          <Field name="name" label="name" placeholder="Ada Lovelace" />
+          <Field name="name" label="Your name" placeholder="Ada Lovelace" />
           <Field
             name="email"
-            label="email"
+            label="Your email"
             type="email"
             placeholder="you@example.com"
           />
           <div>
-            <label className="text-xs text-[var(--term-muted)] uppercase tracking-wider block mb-1">
-              <span className="text-[var(--term-prompt)]">$</span> message
+            <label
+              htmlFor="contact-message"
+              className="block text-sm font-semibold text-[var(--fg-soft)] mb-1.5"
+            >
+              Message
             </label>
             <textarea
+              id="contact-message"
               name="message"
               required
               minLength={10}
               rows={5}
-              placeholder="what's on your mind?"
-              className="w-full bg-[var(--term-bg)] border border-[var(--term-border)] focus:border-[var(--term-prompt)] outline-none rounded px-3 py-2 text-sm font-mono text-[var(--term-fg)] resize-y"
+              placeholder="Tell me about what you’re working on…"
+              className="w-full bg-[var(--bg)] border border-[var(--border-strong)] focus:border-[var(--accent)] outline-none rounded-md px-3 py-2 text-base text-[var(--fg)] resize-y"
             />
           </div>
           <button
             type="submit"
             disabled={status === "sending"}
-            className="w-full border border-[var(--term-prompt)] text-[var(--term-prompt)] hover:bg-[var(--term-prompt)] hover:text-[var(--term-bg)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors py-2 rounded text-sm font-semibold"
+            className="w-full bg-[var(--accent)] hover:bg-[var(--accent-strong)] text-[var(--bg)] disabled:opacity-60 disabled:cursor-not-allowed transition-colors py-2.5 rounded-md font-semibold"
           >
             {status === "sending"
-              ? "$ sending..."
+              ? "Sending…"
               : status === "ok"
-                ? "✓ sent — talk soon"
-                : "$ ./send"}
+                ? "Sent — talk soon ✓"
+                : "Send message"}
           </button>
           {status === "error" && (
-            <p className="text-xs text-[var(--term-danger)]">× {error}</p>
+            <p className="text-sm text-[var(--danger)]" role="alert">
+              {error}
+            </p>
           )}
           {status === "ok" && (
-            <p className="text-xs text-[var(--term-prompt)]">
-              ✓ message received. I&apos;ll reply within a couple of days.
+            <p className="text-sm text-[var(--success)]" role="status">
+              Got it — I’ll reply within a couple of days.
             </p>
           )}
         </form>
@@ -131,15 +137,19 @@ function Field({
 }) {
   return (
     <div>
-      <label className="text-xs text-[var(--term-muted)] uppercase tracking-wider block mb-1">
-        <span className="text-[var(--term-prompt)]">$</span> {label}
+      <label
+        htmlFor={`contact-${name}`}
+        className="block text-sm font-semibold text-[var(--fg-soft)] mb-1.5"
+      >
+        {label}
       </label>
       <input
+        id={`contact-${name}`}
         name={name}
         type={type}
         required
         placeholder={placeholder}
-        className="w-full bg-[var(--term-bg)] border border-[var(--term-border)] focus:border-[var(--term-prompt)] outline-none rounded px-3 py-2 text-sm font-mono text-[var(--term-fg)]"
+        className="w-full bg-[var(--bg)] border border-[var(--border-strong)] focus:border-[var(--accent)] outline-none rounded-md px-3 py-2 text-base text-[var(--fg)]"
       />
     </div>
   );
@@ -159,10 +169,12 @@ function ContactLine({
       href={href}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-      className="flex items-baseline gap-3 group"
+      className="flex items-baseline gap-4 group"
     >
-      <span className="text-[var(--term-muted)] text-sm w-20">{label}</span>
-      <span className="text-[var(--term-fg)] group-hover:text-[var(--term-accent)] transition-colors break-all">
+      <span className="text-sm font-semibold text-[var(--faint)] uppercase tracking-widest w-24 shrink-0">
+        {label}
+      </span>
+      <span className="text-base text-[var(--fg-soft)] group-hover:text-[var(--accent)] transition-colors break-all underline underline-offset-4 decoration-transparent group-hover:decoration-[var(--accent)]">
         {value}
       </span>
     </a>
