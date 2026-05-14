@@ -1,0 +1,32 @@
+---
+title: "Electronics E-Commerce Platform"
+summary: "Full-stack e-commerce store with custom admin dashboard, built end-to-end."
+problem: "Small electronics retailer needed an online storefront with inventory, orders, and admin tooling — without the per-transaction tax of hosted platforms."
+role: "Sole developer — architecture, backend, frontend, deploy."
+date: "2024-09-15"
+tech: ["Next.js", "Node.js", "PostgreSQL", "Tailwind CSS", "Stripe"]
+featured: true
+links:
+  repo: "https://github.com/Hasrat270"
+---
+
+## Context
+
+The client was selling electronics through marketplaces and taking a ~15% platform fee on every transaction. They wanted to migrate to a self-hosted store with full control over checkout, inventory, and customer data. The hard constraint: it had to ship in under 8 weeks.
+
+## Decisions
+
+- **Next.js App Router** for SSR on product pages — SEO matters for an electronics store competing on long-tail product searches.
+- **PostgreSQL over MongoDB** — relational data (products, orders, customers, line items) maps cleanly to SQL and queries stay fast as inventory grows.
+- **Custom admin dashboard** instead of off-the-shelf (Strapi/Sanity) — the client's workflow had quirks (B2B pricing tiers) that didn't fit standard CMS shapes.
+- **Stripe for payments**, not a custom gateway integration — boring choice, but it earned its place.
+
+## Tradeoffs
+
+Skipped a proper search index (Algolia/Meilisearch) for v1 and used Postgres full-text search. It's slower at scale but kept the infra footprint to one database. A migration path exists when product count crosses ~10k.
+
+Cart state lives in `localStorage` + server reconciliation rather than a full server-side cart with sessions. Simpler, but means cross-device cart sync is a future feature.
+
+## Outcome
+
+Shipped in 7 weeks. The client cut transaction fees by ~12% on day one and gained direct customer email access for marketing. Order volume in month two was within 8% of their marketplace baseline despite the migration friction.

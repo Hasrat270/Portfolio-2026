@@ -1,0 +1,32 @@
+---
+title: "School Management System"
+summary: "Attendance, grades, and parent communication for a mid-size school."
+problem: "School was running on spreadsheets and WhatsApp groups — losing data, missing updates, and burning teacher hours on admin."
+role: "Lead developer."
+date: "2024-04-20"
+tech: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS"]
+featured: true
+links:
+  repo: "https://github.com/Hasrat270"
+---
+
+## Context
+
+A 600-student school needed to digitize daily operations: attendance tracking, grade entry, parent notifications, and report-card generation. The bar was set deliberately low — teachers had to be productive on day one, not day thirty.
+
+## Decisions
+
+- **Mobile-first UI** because teachers take attendance on phones, not laptops. Desktop is the secondary form factor.
+- **Optimistic UI for attendance marking** — a teacher taps a name, the dot turns green immediately, sync happens in the background. Spotty wifi in classrooms made this non-negotiable.
+- **Server-rendered PDF report cards** using a headless browser pipeline, not client-side jsPDF. Output had to match the school's existing letterhead exactly.
+- **Role-based dashboards** — teachers, admins, and parents each see a UI tailored to their actual workflow, not a single mega-app.
+
+## Tradeoffs
+
+Skipped a full grading-rubric editor for v1 — teachers enter raw scores and the system computes letter grades against a configurable cutoff table. A proper rubric builder is a v2 ask if the school wants it.
+
+No mobile app, just a responsive web app. Push notifications go via SMS/email instead. Cheaper, no app-store overhead, but means no offline mode.
+
+## Outcome
+
+Live with all teachers using daily. Admin time on attendance and reports dropped from ~6 hours/week to under 1. Parent engagement (measured by message read rates) tripled over WhatsApp baseline.

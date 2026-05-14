@@ -1,0 +1,32 @@
+---
+title: "Multi-Tenant SaaS Platform"
+summary: "A SaaS starter exploring workspace-scoped data, billing, and team auth."
+problem: "Needed a reusable foundation for SaaS products: clean multi-tenant boundaries, role-based access, Stripe billing — without reinventing each time."
+role: "Architect & sole developer."
+date: "2024-12-02"
+tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Stripe", "NextAuth"]
+featured: true
+links:
+  repo: "https://github.com/Hasrat270"
+---
+
+## Context
+
+After shipping three SaaS-shaped projects from scratch, the boilerplate was getting repetitive: auth, workspaces, invitations, billing, RBAC. I built this as the canonical version — opinionated, but every decision is justified in the code.
+
+## Decisions
+
+- **Row-level tenancy** via `workspace_id` on every row, enforced by Prisma middleware that injects the filter automatically. No shared-nothing isolation needed at this scale.
+- **NextAuth with magic links** as the default — passwords are a liability surface I didn't want to own.
+- **Stripe Customer Portal** for subscription management rather than building billing UI. Less code, fewer bugs, customers already trust the Stripe-hosted flow.
+- **Server components for data fetching**; client components only where interactivity demands it.
+
+## Tradeoffs
+
+The Prisma middleware approach means tenant isolation is enforced in app code, not the database. A future migration to Postgres RLS would be safer but adds complexity I didn't need yet. Documented as a known gap.
+
+Magic-link-only auth is great for security but worse for users on Outlook/corporate email filters. Added a fallback to OAuth (Google, GitHub) for that reason.
+
+## Outcome
+
+Now the foundation for two production SaaS products. Time-to-MVP for the next SaaS I started dropped from ~3 weeks of boilerplate to ~3 days.
