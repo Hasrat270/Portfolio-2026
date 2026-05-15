@@ -95,7 +95,7 @@ export default function Contact() {
           </div>
           <button
             type="submit"
-            className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ebe57] text-white transition-colors py-2.5 rounded-md font-semibold"
+            className="w-full inline-flex items-center justify-center gap-2 bg-[var(--accent)] hover:bg-[var(--accent-strong)] text-[var(--bg)] transition-colors py-2.5 rounded-md font-semibold"
           >
             <WhatsAppIcon />
             Send on WhatsApp
