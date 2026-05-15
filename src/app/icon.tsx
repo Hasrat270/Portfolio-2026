@@ -25,10 +25,10 @@ export default async function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontSize: 28,
+          fontSize: 22,
+          lineHeight: 1,
           fontWeight: 700,
           fontFamily: "Caveat, cursive",
-          paddingBottom: 2,
           borderRadius: 6,
         }}
       >

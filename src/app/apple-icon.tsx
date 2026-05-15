@@ -24,10 +24,10 @@ export default async function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontSize: 150,
+          fontSize: 120,
+          lineHeight: 1,
           fontWeight: 700,
           fontFamily: "Caveat, cursive",
-          paddingBottom: 14,
         }}
       >
         H
