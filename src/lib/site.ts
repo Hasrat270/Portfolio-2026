@@ -5,6 +5,9 @@ export const SITE = {
     "Personal portfolio of Hasrat Afridi — full-stack developer from Karachi building modern web applications with the MERN stack. Explore projects, experience, and writing.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   email: "Hasratkhan270@gmail.com",
+  // International format (no plus, no spaces) for wa.me links.
+  // 92 = Pakistan, 3082841437 = number.
+  whatsapp: "923082841437",
   twitter: "@Hasrat09042872",
   github: "Hasrat270",
   keywords: [
