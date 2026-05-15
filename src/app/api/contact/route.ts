@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { SITE } from "@/lib/site";
 
 export const runtime = "nodejs";
 
@@ -73,7 +74,7 @@ export async function POST(req: Request) {
         },
         body: JSON.stringify({
           from: process.env.CONTACT_FROM || "Portfolio <onboarding@resend.dev>",
-          to: process.env.CONTACT_TO || "zerovlabs18@gmail.com",
+          to: process.env.CONTACT_TO || SITE.email,
           subject: `Portfolio: message from ${name}`,
           reply_to: email,
           text: `From: ${name} <${email}>\n\n${message}`,

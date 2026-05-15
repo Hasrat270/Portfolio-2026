@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SITE } from "@/lib/site";
+import MobileMenu from "./MobileMenu";
 
 export default function Header() {
   return (
@@ -7,7 +8,7 @@ export default function Header() {
       <div className="mx-auto max-w-4xl px-5 sm:px-8 h-16 flex items-center justify-between">
         <Link
           href="/"
-          className="font-display text-xl font-bold text-[var(--fg-soft)] hover:text-[var(--accent)] transition-colors"
+          className="font-display text-lg sm:text-xl font-bold text-[var(--fg-soft)] hover:text-[var(--accent)] transition-colors truncate"
         >
           {SITE.name}
         </Link>
@@ -28,12 +29,7 @@ export default function Header() {
             Résumé
           </a>
         </nav>
-        <a
-          href={SITE.resumeUrl}
-          className="md:hidden text-[var(--bg)] bg-[var(--accent)] text-sm font-semibold px-3 py-1.5 rounded-md"
-        >
-          Résumé
-        </a>
+        <MobileMenu />
       </div>
     </header>
   );

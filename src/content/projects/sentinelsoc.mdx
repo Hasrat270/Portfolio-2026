@@ -1,0 +1,55 @@
+---
+title: "SentinelSOC — real-time web security SaaS"
+summary: "A multi-tenant SaaS that watches web apps for live attacks and streams alerts to a central dashboard. Currently in active development."
+problem: "Small teams running web apps have no easy way to see when they're being attacked in real time. Big-vendor security tools are expensive and overkill; raw logs are noisy and slow to act on."
+role: "Solo builder — architecture, full-stack code, and the npm-publishable security agent."
+date: "2026-04-04"
+tech:
+  - "Next.js 15"
+  - "TypeScript"
+  - "Node.js"
+  - "Express"
+  - "MongoDB"
+  - "Socket.io"
+  - "Clerk"
+  - "Stripe"
+  - "shadcn/ui"
+  - "Recharts"
+featured: true
+links:
+  repo: "https://github.com/Hasrat270/SentinelSOC-Saas-Platform"
+  demo: "https://sentinelsocsaasplatform.vercel.app"
+---
+
+## The situation
+
+A lot of small teams ship web apps without any clear picture of what's hitting them — automated SQL injection probes, XSS attempts, path traversal attacks. The big-name security tools cost more than the apps themselves earn, and raw server logs are too noisy to actually act on. There's a gap in the middle, and I'm trying to fill it.
+
+## What I decided
+
+A few choices shape the project:
+
+- **Two pieces, not one.** A dashboard (Next.js + MongoDB) for visualizing threats, and a separate **lightweight agent** that any Node.js / Express app can drop in as one line of middleware. Keep them loosely coupled so the agent stays tiny and the dashboard can evolve independently.
+- **Real-time, not "check back in five minutes."** Threats stream into the dashboard over WebSockets (Socket.io) the moment they happen. Anything slower defeats the point.
+- **Multi-tenant from day one.** Organizations bring multiple sites under one workspace. Every record carries a workspace ID; no chance of one customer seeing another's data.
+- **Clerk for auth, Stripe for billing.** Both are boring, well-documented choices. I'd rather build my own threat-scoring model than my own auth.
+- **AGPL-licensed.** The security middleware should stay open and improvable by the community using it.
+
+## What I'm building next
+
+The MVP is up. The roadmap I'm actively working through:
+
+- **Publishing the agent to npm** — drop in one middleware, get instant interception of SQLi, XSS, and path traversal with zero-latency overhead.
+- **Severity-aware threat scoring.** Not every blocked request is a real attack — I'm building a scoring model that surfaces the genuinely dangerous ones and suppresses the rest.
+- **Usage limits + Stripe upgrade paths.** Free tier caps logged events per month; Pro tier removes the cap. Already wired but needs polish.
+- **Historical analytics.** Beyond the live stream — long-term trends, attack origin maps, time-of-day patterns.
+
+## Trade-offs so far
+
+- Started with **MongoDB**, not Postgres. Threat events are append-heavy and schema-light — Mongo fits that shape well. I'll revisit if reporting queries get complex.
+- **Single-region for now.** Edge deployment of the agent is a future concern; the dashboard runs on Vercel and that's enough for v1.
+- The agent currently focuses on **Node.js/Express** only. A wider language matrix (Python, Go, Rust, PHP) is on the wishlist but not v1.
+
+## Where it stands
+
+Live and running at [sentinelsocsaasplatform.vercel.app](https://sentinelsocsaasplatform.vercel.app). Public source on [GitHub](https://github.com/Hasrat270/SentinelSOC-Saas-Platform). New features are landing every week — if you'd like to follow along or test it on your stack, [reach out](/contact).

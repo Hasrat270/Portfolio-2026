@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import { Source_Serif_4 } from "next/font/google";
@@ -13,6 +13,13 @@ const sourceSerif = Source_Serif_4({
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { SITE } from "@/lib/site";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#fbf9f4",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),

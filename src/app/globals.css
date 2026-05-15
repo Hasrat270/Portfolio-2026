@@ -39,17 +39,37 @@
     Georgia, Cambria, "Times New Roman", serif;
 }
 
+html {
+  /* Force light scheme regardless of OS preference so the warm palette stays. */
+  color-scheme: light;
+  background: var(--bg);
+}
+
 html,
 body {
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, sans-serif;
-  font-size: 17px;
-  line-height: 1.7;
+  font-size: 16px;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+@media (min-width: 640px) {
+  html,
+  body {
+    font-size: 17px;
+    line-height: 1.7;
+  }
+}
+
+/* Prevent horizontal overflow on tiny screens.
+   Use `overflow-x: clip` instead of `hidden` — `hidden` creates a scroll container
+   on <body> which breaks `position: fixed` children (mobile menu, modals). */
+html {
+  overflow-x: clip;
 }
 
 ::selection {
@@ -62,6 +82,128 @@ body {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
   border-radius: 3px;
+}
+
+/* ---------- Mobile menu open animations ---------- */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 180ms ease-out both;
+}
+.animate-slide-down {
+  animation: slide-down 200ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ---------- Stagger direct children of <main> on page load ---------- */
+@keyframes section-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+main > * {
+  animation: section-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+/* Stagger first 10 sections. After that everything is below the fold —
+   landing into view via scroll, animation-delay no longer matters. */
+main > *:nth-child(1)  { animation-delay: 0ms; }
+main > *:nth-child(2)  { animation-delay: 70ms; }
+main > *:nth-child(3)  { animation-delay: 130ms; }
+main > *:nth-child(4)  { animation-delay: 180ms; }
+main > *:nth-child(5)  { animation-delay: 220ms; }
+main > *:nth-child(6)  { animation-delay: 250ms; }
+main > *:nth-child(7)  { animation-delay: 275ms; }
+main > *:nth-child(8)  { animation-delay: 295ms; }
+main > *:nth-child(9)  { animation-delay: 310ms; }
+main > *:nth-child(10) { animation-delay: 320ms; }
+main > *:nth-child(n+11) { animation-delay: 325ms; }
+
+/* ---------- Click feedback ---------- */
+a,
+button {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 120ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 180ms ease;
+}
+a:active,
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* Solid primary-button press: subtle dim + scale */
+button:active:not(:disabled) {
+  filter: brightness(0.92);
+}
+
+/* Underline links: animated underline grows from center on hover, snaps on click */
+a.link-anim,
+.prose a {
+  position: relative;
+  text-decoration: none;
+  background-image: linear-gradient(var(--link), var(--link));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 1px;
+  transition:
+    background-size 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 180ms ease;
+}
+a.link-anim:hover,
+.prose a:hover {
+  background-size: 100% 2px;
+  background-image: linear-gradient(var(--link-hover), var(--link-hover));
+  color: var(--link-hover);
+}
+a.link-anim:active,
+.prose a:active {
+  background-size: 100% 3px;
+}
+
+/* Ripple-friendly buttons */
+button,
+.btn-press {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Card lift on press */
+.card-press {
+  transition:
+    transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 220ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+.card-press:hover {
+  transform: translateY(-2px);
+}
+.card-press:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  main > * {
+    animation: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
 
 /* Headings use a serif for editorial warmth */
@@ -98,99 +240,130 @@ code:not(pre code) {
   color: var(--accent-strong);
 }
 
-/* MDX prose — readable, generous */
-.prose {
-  font-size: 1.0625rem; /* 17px */
-  line-height: 1.8;
-  color: var(--fg);
-  max-width: 65ch;
-}
-.prose h1 {
-  font-family: var(--font-serif);
-  font-size: 2.25rem;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  color: var(--fg-soft);
-  margin: 2rem 0 1rem;
-  line-height: 1.15;
-}
-.prose h2 {
-  font-family: var(--font-serif);
-  font-size: 1.625rem;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  color: var(--fg-soft);
-  margin: 2.25rem 0 0.875rem;
-  line-height: 1.25;
-}
-.prose h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--fg-soft);
-  margin: 1.75rem 0 0.5rem;
-}
-.prose p {
-  margin: 1rem 0;
-  color: var(--fg);
-}
-.prose strong {
-  color: var(--fg-soft);
-  font-weight: 700;
-}
-.prose a {
-  color: var(--link);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
-}
-.prose a:hover {
-  color: var(--link-hover);
-  text-decoration-thickness: 2px;
-}
-.prose ul {
-  margin: 1rem 0;
-  padding-left: 1.5rem;
-  list-style: none;
-}
-.prose ul li {
-  margin: 0.5rem 0;
-  padding-left: 0.25rem;
-  position: relative;
-}
-.prose ul li::before {
-  content: "—";
-  color: var(--accent);
-  display: inline-block;
-  width: 1.5rem;
-  margin-left: -1.75rem;
-  font-weight: 700;
-}
-.prose ol {
-  margin: 1rem 0;
-  padding-left: 1.75rem;
-  list-style: decimal;
-}
-.prose ol li {
-  margin: 0.5rem 0;
-  padding-left: 0.25rem;
-}
-.prose ol li::marker {
-  color: var(--accent);
-  font-weight: 700;
-}
-.prose blockquote {
-  border-left: 3px solid var(--accent);
-  padding: 0.4rem 0 0.4rem 1.25rem;
-  margin: 1.5rem 0;
-  color: var(--muted);
-  font-style: italic;
-  background: var(--bg-muted);
-  border-radius: 0 4px 4px 0;
-}
-.prose hr {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 2.5rem 0;
+/* MDX prose — readable, generous.
+   Wrapped in @layer components so Tailwind v4 preflight (in @layer base)
+   doesn't override these heading/paragraph styles. */
+@layer components {
+  .prose {
+    font-size: 1rem; /* 16px on mobile */
+    line-height: 1.75;
+    color: var(--fg);
+    max-width: 65ch;
+  }
+  @media (min-width: 640px) {
+    .prose {
+      font-size: 1.0625rem; /* 17px on sm+ */
+      line-height: 1.8;
+    }
+  }
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    color: var(--fg-soft);
+  }
+  .prose h1 {
+    font-family: var(--font-serif);
+    font-size: 1.875rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin: 1.75rem 0 0.875rem;
+    line-height: 1.15;
+  }
+  @media (min-width: 640px) {
+    .prose h1 {
+      font-size: 2.25rem;
+      margin: 2rem 0 1rem;
+    }
+  }
+  .prose h2 {
+    font-family: var(--font-serif);
+    font-size: 1.375rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin: 1.875rem 0 0.75rem;
+    line-height: 1.25;
+  }
+  @media (min-width: 640px) {
+    .prose h2 {
+      font-size: 1.625rem;
+      margin: 2.25rem 0 0.875rem;
+    }
+  }
+  .prose h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 1.5rem 0 0.5rem;
+  }
+  @media (min-width: 640px) {
+    .prose h3 {
+      font-size: 1.25rem;
+      margin: 1.75rem 0 0.5rem;
+    }
+  }
+  .prose p {
+    margin: 1rem 0;
+    color: var(--fg);
+  }
+  .prose strong {
+    color: var(--fg-soft);
+    font-weight: 700;
+  }
+  .prose a {
+    color: var(--link);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+  .prose a:hover {
+    color: var(--link-hover);
+    text-decoration-thickness: 2px;
+  }
+  .prose ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    list-style: none;
+  }
+  .prose ul li {
+    margin: 0.5rem 0;
+    padding-left: 0.25rem;
+    position: relative;
+  }
+  .prose ul li::before {
+    content: "—";
+    color: var(--accent);
+    display: inline-block;
+    width: 1.5rem;
+    margin-left: -1.75rem;
+    font-weight: 700;
+  }
+  .prose ol {
+    margin: 1rem 0;
+    padding-left: 1.75rem;
+    list-style: decimal;
+  }
+  .prose ol li {
+    margin: 0.5rem 0;
+    padding-left: 0.25rem;
+  }
+  .prose ol li::marker {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .prose blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 0.4rem 0 0.4rem 1.25rem;
+    margin: 1.5rem 0;
+    color: var(--muted);
+    font-style: italic;
+    background: var(--bg-muted);
+    border-radius: 0 4px 4px 0;
+  }
+  .prose hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
 }
 
 /* Scrollbar */

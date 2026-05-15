@@ -6,7 +6,7 @@ export default function NowPreview() {
   return (
     <section
       id="now"
-      className="mx-auto max-w-4xl px-5 sm:px-8 py-16 border-t border-[var(--border)]"
+      className="mx-auto max-w-4xl px-5 sm:px-8 py-12 sm:py-16 border-t border-[var(--border)]"
     >
       <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-muted)] p-8">
         <div className="flex items-center gap-2 mb-4">
@@ -19,8 +19,9 @@ export default function NowPreview() {
           </span>
         </div>
         <p className="font-display text-xl md:text-2xl text-[var(--fg-soft)] leading-snug">
-          Rebuilding this site, reading a book on data systems, and slowly
-          shipping a side project that’s starting to feel real.
+          Building <strong>SentinelSOC</strong> — a real-time security SaaS
+          that watches web apps for attacks and streams alerts to a central
+          dashboard. Shipping new features as I go.
         </p>
         <Link
           href="/now"

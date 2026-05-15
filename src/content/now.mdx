@@ -1,15 +1,31 @@
 ---
-updated: "2026-05-14"
+updated: "2026-05-15"
 ---
 
 ## Right now
 
-I'm rebuilding this website (you're looking at it). The goal: make it feel less like a tech demo and more like a place where someone can quickly see what I do and decide if we'd be a good fit.
+I'm building a security SaaS called **SentinelSOC** — a real-time threat detection platform that watches web apps for attacks (SQL injection, XSS, path traversal) and streams alerts to a central dashboard. It's the most ambitious thing I've shipped so far.
 
-## Working on
+## SentinelSOC — what I'm building next
 
-- **Client work** — finishing a small e-commerce refresh and a dashboard project. Quietly busy.
-- **A side project** — a SaaS idea I've been chipping at on weekends. It's starting to feel like it might actually be something. More details when it's less embarrassing.
+→ [**Try the live demo**](https://sentinelsocsaasplatform.vercel.app) — see the dashboard in action at *sentinelsocsaasplatform.vercel.app*
+
+→ [**Read the source on GitHub**](https://github.com/Hasrat270/SentinelSOC-Saas-Platform) — all open, AGPL-licensed at *github.com/Hasrat270/SentinelSOC-Saas-Platform*
+
+The MVP is up. What I'm adding next:
+
+- **A lightweight npm-publishable agent** that any Node.js / Express app can drop in as a single middleware — zero-latency interception of common web attacks.
+- **Live threat stream** over WebSockets so the dashboard updates the moment an attack lands on a monitored site.
+- **Severity-aware scoring** — not every blocked request is a real threat. I'm building a scoring model that surfaces the ones that actually matter.
+- **Multi-tenant data isolation** for organizations with multiple sites under one workspace.
+- **Stripe billing + usage limits** — free tier caps on logged events, Pro tier unlimited. Already wired with Clerk for auth.
+
+The current stack: **Next.js 15+, Clerk, Express, MongoDB, Socket.io, shadcn/ui, Recharts** — a clean split between the Next dashboard and a separate Node/Express backend.
+
+## Also on my plate
+
+- A small client e-commerce refresh.
+- Exploring how to package the SentinelSOC agent as a drop-in npm module.
 
 ## Reading
 

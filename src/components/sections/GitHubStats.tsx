@@ -9,7 +9,7 @@ export default async function GitHubStats() {
     return (
       <section
         id="github"
-        className="mx-auto max-w-4xl px-5 sm:px-8 py-16 border-t border-[var(--border)]"
+        className="mx-auto max-w-4xl px-5 sm:px-8 py-12 sm:py-16 border-t border-[var(--border)]"
       >
         <SectionHeading
           eyebrow="Open source"
@@ -31,7 +31,7 @@ export default async function GitHubStats() {
   return (
     <section
       id="github"
-      className="mx-auto max-w-4xl px-5 sm:px-8 py-16 border-t border-[var(--border)]"
+      className="mx-auto max-w-4xl px-5 sm:px-8 py-12 sm:py-16 border-t border-[var(--border)]"
     >
       <SectionHeading
         eyebrow="Open source"
@@ -51,7 +51,7 @@ export default async function GitHubStats() {
               href={r.html_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block rounded-xl border border-[var(--border)] hover:border-[var(--accent)] bg-[var(--bg-muted)]/40 hover:bg-[var(--bg-muted)] p-5 transition-colors"
+              className="card-press block rounded-xl border border-[var(--border)] hover:border-[var(--accent)] bg-[var(--bg-muted)]/40 hover:bg-[var(--bg-muted)] p-5"
             >
               <div className="flex items-baseline justify-between gap-3">
                 <h4 className="font-display text-lg font-bold text-[var(--fg-soft)] truncate">

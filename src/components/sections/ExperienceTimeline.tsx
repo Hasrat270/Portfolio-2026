@@ -5,7 +5,7 @@ export default function ExperienceTimeline() {
   return (
     <section
       id="experience"
-      className="mx-auto max-w-4xl px-5 sm:px-8 py-16 border-t border-[var(--border)]"
+      className="mx-auto max-w-4xl px-5 sm:px-8 py-12 sm:py-16 border-t border-[var(--border)]"
     >
       <SectionHeading
         eyebrow="Experience"

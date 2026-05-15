@@ -7,7 +7,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="mx-auto max-w-4xl px-5 sm:px-8 py-16 border-t border-[var(--border)]"
+      className="mx-auto max-w-4xl px-5 sm:px-8 py-12 sm:py-16 border-t border-[var(--border)]"
     >
       <SectionHeading
         eyebrow="Selected work"
@@ -19,7 +19,7 @@ export default function Projects() {
           <Link
             key={p.slug}
             href={`/projects/${p.slug}`}
-            className="group block rounded-xl border border-[var(--border)] hover:border-[var(--accent)] bg-[var(--bg-muted)]/40 hover:bg-[var(--bg-muted)] p-6 transition-colors shadow-sm hover:shadow-md"
+            className="card-press group block rounded-xl border border-[var(--border)] hover:border-[var(--accent)] bg-[var(--bg-muted)]/40 hover:bg-[var(--bg-muted)] p-6 shadow-sm hover:shadow-md"
           >
             <div className="flex items-start justify-between gap-3">
               <h3 className="font-display text-xl font-bold text-[var(--fg-soft)] group-hover:text-[var(--accent)] transition-colors leading-snug">
@@ -51,7 +51,7 @@ export default function Projects() {
       <div className="mt-8">
         <Link
           href="/projects"
-          className="text-[15px] font-semibold text-[var(--link)] hover:text-[var(--link-hover)] underline underline-offset-4 decoration-1 hover:decoration-2"
+          className="link-anim text-[15px] font-semibold text-[var(--link)]"
         >
           See all projects →
         </Link>

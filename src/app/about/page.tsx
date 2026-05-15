@@ -5,7 +5,7 @@ import { getAbout } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "A bit about Hasrat — what I do, how I work, who I am.",
+  description: "A bit about Hasrat Afridi — what I do, how I work, who I am.",
 };
 
 export default function AboutPage() {

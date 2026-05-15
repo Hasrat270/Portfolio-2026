@@ -4,15 +4,15 @@ import { skillGroups } from "@/content/skills";
 const FRIENDLY_LABELS: Record<string, string> = {
   Languages: "What I code in",
   Frameworks: "What I build with",
-  Tools: "What I use every day",
-  Infra: "Where it runs",
+  Databases: "Where the data lives",
+  "Tools & infra": "What I use every day",
 };
 
 export default function SkillsAndTools() {
   return (
     <section
       id="skills"
-      className="mx-auto max-w-4xl px-5 sm:px-8 py-16 border-t border-[var(--border)]"
+      className="mx-auto max-w-4xl px-5 sm:px-8 py-12 sm:py-16 border-t border-[var(--border)]"
     >
       <SectionHeading
         eyebrow="Toolkit"

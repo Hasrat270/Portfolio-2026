@@ -46,24 +46,24 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="mx-auto max-w-4xl px-5 sm:px-8 py-16 border-t border-[var(--border)]"
+      className="mx-auto max-w-4xl px-5 sm:px-8 py-12 sm:py-16 border-t border-[var(--border)]"
     >
       <SectionHeading
         eyebrow="Let’s talk"
         title="Say hello"
         description="Email is the fastest way to reach me. The form below lands in the same inbox."
       />
-      <div className="grid gap-8 md:grid-cols-2">
+      <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
         <div className="space-y-3">
           <ContactLine label="Email" value={SITE.email} href={`mailto:${SITE.email}`} />
           <ContactLine label="GitHub" value={SITE.github} href={SITE.socials.github} />
-          <ContactLine label="LinkedIn" value="hasrat270" href={SITE.socials.linkedin} />
-          <ContactLine label="Twitter" value="@hasrat270" href={SITE.socials.x} />
+          <ContactLine label="LinkedIn" value="hasrat3701" href={SITE.socials.linkedin} />
+          <ContactLine label="X / Twitter" value="@Hasrat09042872" href={SITE.socials.x} />
           <ContactLine label="Résumé" value="Download PDF" href={SITE.resumeUrl} />
         </div>
         <form
           onSubmit={onSubmit}
-          className="rounded-xl border border-[var(--border)] bg-[var(--bg-muted)]/40 p-6 space-y-4"
+          className="rounded-xl border border-[var(--border)] bg-[var(--bg-muted)]/40 p-5 sm:p-6 space-y-4"
         >
           <input
             type="text"
@@ -169,9 +169,9 @@ function ContactLine({
       href={href}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-      className="flex items-baseline gap-4 group"
+      className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 group"
     >
-      <span className="text-sm font-semibold text-[var(--faint)] uppercase tracking-widest w-24 shrink-0">
+      <span className="text-xs font-semibold text-[var(--faint)] uppercase tracking-widest sm:w-24 sm:shrink-0">
         {label}
       </span>
       <span className="text-base text-[var(--fg-soft)] group-hover:text-[var(--accent)] transition-colors break-all underline underline-offset-4 decoration-transparent group-hover:decoration-[var(--accent)]">

@@ -5,11 +5,11 @@ export default function About() {
   return (
     <section
       id="about"
-      className="mx-auto max-w-4xl px-5 sm:px-8 py-16 border-t border-[var(--border)]"
+      className="mx-auto max-w-4xl px-5 sm:px-8 py-12 sm:py-16 border-t border-[var(--border)]"
     >
       <SectionHeading eyebrow="About" title="A bit about me" />
-      <div className="grid gap-10 md:grid-cols-[3fr_2fr] items-start">
-        <div className="space-y-5 text-[var(--fg)] text-lg leading-relaxed">
+      <div className="grid gap-8 md:gap-10 md:grid-cols-[3fr_2fr] items-start">
+        <div className="space-y-4 sm:space-y-5 text-[var(--fg)] text-base sm:text-lg leading-relaxed">
           <p>
             I’m a developer who likes making things that feel obvious to use.
             For the last few years I’ve been helping founders and small teams
@@ -37,7 +37,7 @@ export default function About() {
           </p>
         </div>
         <aside className="rounded-xl border border-[var(--border)] bg-[var(--bg-muted)]/50 p-6 space-y-4">
-          <Stat label="Based in" value="Remote · Available worldwide" />
+          <Stat label="Based in" value="Karachi, Pakistan · Open to remote" />
           <Stat label="Open to" value="Freelance & full-time roles" />
           <Stat label="Reply time" value="Within 2 days" />
         </aside>

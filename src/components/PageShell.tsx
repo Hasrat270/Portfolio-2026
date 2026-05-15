@@ -16,29 +16,29 @@ export default function PageShell({
   children: React.ReactNode;
 }) {
   return (
-    <div className="mx-auto max-w-3xl px-5 sm:px-8 py-12 md:py-16">
+    <div className="mx-auto max-w-3xl px-5 sm:px-8 py-10 sm:py-12 md:py-16">
       <Link
         href={back}
         className="text-sm font-semibold text-[var(--muted)] hover:text-[var(--accent)] inline-flex items-center gap-1.5"
       >
         <span aria-hidden="true">←</span> {backLabel}
       </Link>
-      <div className="mt-8">
+      <div className="mt-6 sm:mt-8">
         {eyebrow && (
-          <p className="text-sm font-semibold text-[var(--accent)] uppercase tracking-widest">
+          <p className="text-xs sm:text-sm font-semibold text-[var(--accent)] uppercase tracking-widest">
             {eyebrow}
           </p>
         )}
-        <h1 className="font-display mt-2 text-4xl md:text-5xl font-bold text-[var(--fg-soft)] tracking-tight leading-[1.1]">
+        <h1 className="font-display mt-2 text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--fg-soft)] tracking-tight leading-[1.1]">
           {title}
         </h1>
         {description && (
-          <p className="mt-4 text-[var(--muted)] text-base md:text-lg leading-relaxed max-w-2xl">
+          <p className="mt-3 sm:mt-4 text-[var(--muted)] text-[15px] sm:text-base md:text-lg leading-relaxed max-w-2xl">
             {description}
           </p>
         )}
       </div>
-      <div className="mt-10">{children}</div>
+      <div className="mt-8 sm:mt-10">{children}</div>
     </div>
   );
 }

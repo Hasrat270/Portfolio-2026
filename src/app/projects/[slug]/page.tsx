@@ -41,7 +41,7 @@ export default async function ProjectPage({
       back="/projects"
       backLabel="All projects"
     >
-      <dl className="grid gap-4 sm:grid-cols-2 mb-8 rounded-xl border border-[var(--border)] bg-[var(--bg-muted)]/50 p-6">
+      <dl className="grid gap-4 sm:grid-cols-2 mb-8 rounded-xl border border-[var(--border)] bg-[var(--bg-muted)]/50 p-5 sm:p-6">
         <Meta label="The problem" value={frontmatter.problem} />
         <Meta label="My role" value={frontmatter.role} />
         <Meta label="When" value={formatDate(frontmatter.date)} />

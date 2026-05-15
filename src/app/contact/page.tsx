@@ -4,7 +4,7 @@ import Contact from "@/components/sections/Contact";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Hasrat — email, socials, or a quick form.",
+  description: "Get in touch with Hasrat Afridi — email, socials, or a quick form.",
 };
 
 export default function ContactPage() {
